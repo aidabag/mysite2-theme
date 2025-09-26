@@ -1,32 +1,36 @@
-name: Deploy MkDocs to GitHub Pages
+name: Deploy MkDocs site to GitHub Pages
 
 on:
   push:
     branches:
-      - main
+      - main  # запуск workflow при пуше в main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      # 1. Клонируем репозиторий
+      - uses: actions/checkout@v3
 
+      # 2. Устанавливаем Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
+      # 3. Устанавливаем MkDocs и тему
       - name: Install dependencies
         run: pip install --upgrade pip mkdocs mkdocs-material
 
-      - name: Configure GitHub remote with token and deploy
-        env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-        run: |
-          # Настраиваем remote для git с токеном
-          git remote set-url origin https://x-access-token:${GH_TOKEN}@github.com/aidabag/mysite2.git
-          # Деплой сайта
-          mkdocs gh-deploy --force --clean
+      # 4. Собираем сайт
+      - name: Build MkDocs site
+        run: mkdocs build
+
+      # 5. Деплой на GitHub Pages с помощью готового Action
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}  # токен из репозитория
+          publish_dir: ./site                 # папка со сгенерированным сайтом
 
