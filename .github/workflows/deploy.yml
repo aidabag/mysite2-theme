@@ -3,7 +3,7 @@ name: Deploy MkDocs site to GitHub Pages
 on:
   push:
     branches:
-      - main  # запуск workflow при пуше в main
+      - main
 
 jobs:
   deploy:
@@ -19,7 +19,7 @@ jobs:
         with:
           python-version: '3.x'
 
-      # 3. Устанавливаем MkDocs и тему
+      # 3. Устанавливаем зависимости MkDocs
       - name: Install dependencies
         run: pip install --upgrade pip mkdocs mkdocs-material
 
@@ -27,10 +27,10 @@ jobs:
       - name: Build MkDocs site
         run: mkdocs build
 
-      # 5. Деплой на GitHub Pages с помощью готового Action
+      # 5. Деплой на GitHub Pages через Action
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GH_TOKEN }}  # токен из репозитория
-          publish_dir: ./site                 # папка со сгенерированным сайтом
+          personal_token: ${{ secrets.GHTOKEN }}  # используем твой новый секрет
+          publish_dir: ./site                      # папка со сгенерированным сайтом
 
