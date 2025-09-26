@@ -3,7 +3,7 @@ name: Deploy MkDocs to GitHub Pages
 on:
   push:
     branches:
-      - main
+      - main  # запуск при пуше в main
 
 jobs:
   deploy:
@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: pip install --upgrade pip mkdocs mkdocs-material
 
-      # 4. Собираем и деплоим сайт
+      # 4. Деплой на GitHub Pages с использованием секретного токена
       - name: Deploy to GitHub Pages
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: mkdocs gh-deploy --force --clean
+
