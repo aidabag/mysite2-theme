@@ -10,16 +10,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1. Клонируем репозиторий
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2. Устанавливаем Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
+      # 3. Устанавливаем зависимости MkDocs и тему
       - name: Install dependencies
-        run: pip install mkdocs mkdocs-material
+        run: pip install --upgrade pip mkdocs mkdocs-material
 
+      # 4. Собираем и деплоим сайт
       - name: Deploy to GitHub Pages
-        run: mkdocs gh-deploy --force
+        run: mkdocs gh-deploy --force --clean
