@@ -31,6 +31,6 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.GHTOKEN }}  # используем твой новый секрет
+          personal_token: ${{ secrets.GHTOKEN2 }}  # используем твой новый секрет
           publish_dir: ./site                      # папка со сгенерированным сайтом
 
