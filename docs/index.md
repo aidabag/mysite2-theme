@@ -1,17 +1,23 @@
-# Welcome to MkDocs
+# Добро пожаловать на мой сайт!
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+Это учебный проект по кастомизации статического сайта с использованием MkDocs.
 
-## Commands
+## О проекте
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+Здесь есть:
 
-## Project layout
+- Собственная тема с HTML, CSS и JS
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+- Header и Footer
+
+- Подключение стилей и скриптов
+
+- Автоматический деплой через GitHub Actions
+
+## Последние обновления
+
+- Создана главная и дополнительная страница "О сайте"
+
+- Настроен автоматический деплой на GitHub Pages
+
+- Применены собственные CSS и JS для улучшения внешнего вида

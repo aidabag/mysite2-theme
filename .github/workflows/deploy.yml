@@ -11,26 +11,48 @@ jobs:
 
     steps:
       # 1. Клонируем репозиторий
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      # 2. Устанавливаем Python
+      # 2. Устанавливаем Python (для MkDocs)
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
 
-      # 3. Устанавливаем зависимости MkDocs
-      - name: Install dependencies
+      # 3. Устанавливаем Node.js (для PostCSS, ESLint и т.д.)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.x'
+
+      # 4. Устанавливаем Python-зависимости (MkDocs и темы)
+      - name: Install Python dependencies
         run: pip install --upgrade pip mkdocs mkdocs-material
 
-      # 4. Собираем сайт
-      - name: Build MkDocs site
-        run: mkdocs build
+      # 5. Устанавливаем npm-зависимости
+      - name: Install Node.js dependencies
+        run: npm install
 
-      # 5. Деплой на GitHub Pages через Action
+      # 6. Проверка и форматирование JS
+      - name: Lint and format JS
+        run: npm run validate
+
+      # 7. Минификация и обработка CSS
+      - name: Build CSS
+        run: npm run build:css
+
+      # 8. (опционально) Валидация HTML
+      # - name: Validate HTML
+      #   run: npm run validate:html
+
+      # 9. Сборка сайта MkDocs
+      - name: Build MkDocs site
+        run: mkdocs build --clean
+
+      # 10. Деплой на GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.GHTOKEN2 }}  # используем твой новый секрет
-          publish_dir: ./site                      # папка со сгенерированным сайтом
-
+          personal_token: ${{ secrets.GHTOKEN2 }}
+          publish_dir: ./site

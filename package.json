@@ -1,0 +1,24 @@
+{
+  "name": "mysite2-theme",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "build:css": "postcss theme/style.css -o theme/style.min.css",
+    "lint:js": "eslint theme/script.js",
+    "format:js": "prettier --write theme/script.js",
+    "validate": "npm run lint:js && npm run format:js",
+    "validate:html": "html-validator --file site/index.html --verbose",
+    "build": "npm run build:css"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.1.1",
+    "eslint": "^9.37.0",
+    "postcss": "^8.5.6",
+    "postcss-cli": "^11.0.1",
+    "prettier": "^3.6.2"
+  },
+  "devDependencies": {
+    "html-validator-cli": "^7.0.1"
+  }
+}

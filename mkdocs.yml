@@ -1,1 +1,10 @@
-site_name: My Docs
+site_name: "Мой кастомный сайт"
+site_description: "Учебный проект по MkDocs"
+site_author: "aidabag"
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: null
+  custom_dir: theme

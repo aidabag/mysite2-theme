@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="{{ config.site_description }}" />
+  <meta name="author" content="{{ config.site_author }}" />
+  <title>{{ config.site_name }}</title>
+  <link rel="stylesheet" href="{{ base_url }}/style.min.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <a href="{{ base_url }}/index.html" class="logo">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span class="site-title">{{ config.site_name }}</span>
+        </a>
+      </div>
+      <nav class="nav">
+        <a href="{{ base_url }}/index.html">Главная</a>
+        <a href="{{ base_url }}/about/">О проекте</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content container reveal">
+      <h1>{{ config.site_name }}</h1>
+      <p class="lead">Учебный проект по кастомизации статического сайта с MkDocs — теперь с плавными анимациями и улучшенной типографикой.</p>
+    </div>
+  </section>
+
+
+  <main class="container content-area">
+    <article class="doc-card reveal">
+      {{ page.content | safe }}
+    </article>
+  </main>
+
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2025 {{ config.site_author }}. Учебный проект по MkDocs.</p>
+    </div>
+  </footer>
+
+
+  <script src="{{ base_url }}/script.js"></script>
+</body>
+</html>
